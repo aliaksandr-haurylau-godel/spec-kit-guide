@@ -11,6 +11,7 @@ Start here to understand Spec-Kit's philosophy and setup:
 - **[Spec-Driven Development](docs/spec-driven-development.md)** - Core methodology and principles
 - **[Installation Guide](docs/installation.md)** - Complete setup instructions
 - **[Constitution Reference](docs/constitution-reference.md)** - All 9 constitutional articles explained
+- **[Artifact Structure Guide](docs/artifact-structure.md)** - Complete guide to specs, plans, tasks, and research artifacts
 - **[CLI Reference](docs/cli-reference.md)** - Complete command-line tool documentation
 - **[Supported AI Agents](docs/supported-agents.md)** - Compatibility table for 20+ agents
 - **[Video Resources](docs/video-resources.md)** - Tutorial videos and demos
@@ -43,10 +44,17 @@ Detailed guides for each slash command:
 
 Real examples of generated documents:
 
+**Tutorial Examples (Taskify):**
 - **[Constitution Example](artifacts/constitution-example.md)** - Taskify project constitution
 - **[Specification Example](artifacts/spec-example-taskify.md)** - Complete feature spec
 - **[Plan Example](artifacts/plan-example-taskify.md)** - Implementation plan structure
 - **[Tasks Example](artifacts/tasks-example-taskify.md)** - Task breakdown structure
+
+**Real-World Examples from Production Projects:**
+- **[Artifact Examples Index](artifacts/README.md)** - Complete navigation for 11 production examples
+- **[IdeaVim API Layer](artifacts/spec-example-ideavim-api.md)** - Complex feature with research.md (IDE plugin)
+- **[Backpack Nx Migration](artifacts/spec-example-backpack-nx.md)** - Monorepo feature (design system)
+- **[Constitution Examples](artifacts/README.md#constitution-examples)** - 3 real constitutions showing version evolution
 
 ### ❓ FAQ
 
@@ -55,6 +63,8 @@ Common questions and troubleshooting:
 - **[Troubleshooting](faq/troubleshooting.md)** - Installation, upgrade, and usage issues
 - **[Git & Branches](faq/git-and-branches.md)** - Feature branches and version control
 - **[Customization](faq/customization.md)** - Customize constitution, templates, and workflows
+- **[Constitution Evolution](faq/constitution-evolution.md)** - Version management and MAJOR/MINOR/PATCH bumps
+- **[Artifacts FAQ](faq/artifacts.md)** - Questions about specs, plans, tasks, and research.md
 
 ### 💡 Tricks & Tips
 

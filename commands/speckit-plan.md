@@ -178,7 +178,18 @@ Now I want you to go and audit the implementation plan and the implementation de
 
 ## See Also
 
-- [Plan Example (Taskify)](../artifacts/plan-example-taskify.md) - Complete plan
+**Tutorial Examples:**
+- [Plan Example (Taskify)](../artifacts/plan-example-taskify.md) - Simple todo app plan
+
+**Real-World Examples:**
+- [IdeaVim API Layer Plan](../artifacts/plan-example-ideavim-api.md) - Complex feature with Phase -1 gates (307 lines)
+- [Backpack Nx Migration Plan](../artifacts/plan-example-backpack-nx.md) - Monorepo feature with 4 phases (480 lines)
+- [IdeaVim Research Document](../artifacts/research-example-ideavim-api.md) - Example of research.md with K-numbered decisions
+- [All Artifact Examples](../artifacts/README.md) - Complete index
+
+**Guides:**
+- [Artifact Structure Guide](../docs/artifact-structure.md) - Complete guide to plan.md and research.md
+- [Artifacts FAQ](../faq/artifacts.md) - Questions about planning and research artifacts
 - [Basic Workflow Step 5](../workflows/basic-workflow.md#step-5-create-a-technical-implementation-plan) - In context
 - [Constitutional Gates](../tricks/constitutional-gates.md) - Phase -1 enforcement
 - [Constitution Reference](../docs/constitution-reference.md) - Principles to follow

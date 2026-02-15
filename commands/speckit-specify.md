@@ -136,6 +136,16 @@ Save those for `/speckit.plan`!
 
 ## See Also
 
-- [Spec Example (Taskify)](../artifacts/spec-example-taskify.md) - Complete specification
+**Tutorial Examples:**
+- [Spec Example (Taskify)](../artifacts/spec-example-taskify.md) - Simple todo app specification
+
+**Real-World Examples:**
+- [IdeaVim API Layer Spec](../artifacts/spec-example-ideavim-api.md) - Complex IDE plugin feature (249 lines)
+- [Backpack Nx Migration Spec](../artifacts/spec-example-backpack-nx.md) - Monorepo feature with dated clarifications (355 lines)
+- [All Artifact Examples](../artifacts/README.md) - Complete index of production examples
+
+**Guides:**
+- [Artifact Structure Guide](../docs/artifact-structure.md) - Complete guide to spec.md format
+- [Artifacts FAQ](../faq/artifacts.md) - Common questions about specifications
 - [Basic Workflow Step 3](../workflows/basic-workflow.md#step-3-create-the-spec) - In context
 - [Template Constraints](../tricks/template-constraints.md) - How templates guide AI

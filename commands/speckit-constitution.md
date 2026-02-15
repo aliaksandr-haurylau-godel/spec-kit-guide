@@ -78,7 +78,18 @@ The generated constitution typically includes nine articles (see [Constitution R
 
 ## See Also
 
-- [Constitution Reference](../docs/constitution-reference.md) - Detailed explanation of nine articles
-- [Constitution Example (Taskify)](../artifacts/constitution-example.md) - Complete example
+**Core Documentation:**
+- [Constitution Reference](../docs/constitution-reference.md) - Detailed explanation of nine articles and real-world patterns
+- [Constitution Evolution FAQ](../faq/constitution-evolution.md) - Version management (MAJOR/MINOR/PATCH bumps)
+
+**Tutorial Example:**
+- [Constitution Example (Taskify)](../artifacts/constitution-example.md) - Basic constitution with core 9 articles
+
+**Real-World Examples:**
+- [IdeaVim Constitution](../artifacts/constitution-example-ideavim.md) - v1.2.2, IDE plugin with Article X (Vim Compatibility)
+- [Backpack Constitution](../artifacts/constitution-example-backpack.md) - v1.0.2, Design system with NON-NEGOTIABLE markers
+- [Manifest Constitution](../artifacts/constitution-example-manifest.md) - v2.0.0, MAJOR bump (POC to Production)
+
+**Guides:**
 - [Basic Workflow Step 2](../workflows/basic-workflow.md#step-2-define-your-constitution) - Constitution in context
 - [Constitutional Gates](../tricks/constitutional-gates.md) - How gates enforce principles
