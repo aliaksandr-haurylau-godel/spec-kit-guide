@@ -74,6 +74,13 @@ Advanced techniques and best practices:
 - **[Constitutional Gates](tricks/constitutional-gates.md)** - Pre-implementation quality checks
 - **[Avoiding Over-Engineering](tricks/avoiding-over-engineering.md)** - Simplicity in practice
 
+### 🎤 Presentations
+
+Ready-to-use presentation materials:
+
+- **[30-Minute SDD Presentation](docs/presentation-30min-sdd-spec-kit.md)** - Corporate training deck for IT specialists
+- **[Slide Deck Structure](slides/30min-sdd-deck-structure.md)** - Detailed slide-by-slide layout guide with visuals
+
 ---
 
 ## Quick Start
