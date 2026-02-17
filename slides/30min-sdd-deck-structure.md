@@ -215,29 +215,35 @@ specify create spec "Add user authentication"
 **Layout**: Title + Flowchart (horizontal)
 
 **Text**:
-- Title: "The 6-Step Spec-Kit Workflow"
-- Flowchart boxes (6 items):
+- Title: "The 7-Step Spec-Kit Workflow"
+- Flowchart boxes (7 items):
   1. 🟢 `/speckit.constitution` → constitution.md
   2. 🔵 `/speckit.specify` → spec.md
-  3. 🔵 `/speckit.clarify` → research.md (optional)
+  3. 🔷 `/speckit.clarify` → research.md (optional)
   4. 🟠 `/speckit.plan` → plan.md
-  5. 🟠 `/speckit.analyze` → validation
-  6. 🟣 `/speckit.tasks` → tasks.md
+  5. 🟣 `/speckit.tasks` → tasks.md
+  6. 🟡 `/speckit.analyze` → validation (optional)
+  7. 🔴 `/speckit.implement` → executes tasks
 
 **Visual**: Flowchart with arrows and color coding
 - Layout: Horizontal flow, left to right
 - Arrows: Bold, connecting boxes
 - Colors:
   - Green (#4caf50): Setup (constitution)
-  - Blue (#2196f3): Specification (specify, clarify)
-  - Orange (#ff9800): Planning (plan, analyze)
+  - Blue (#2196f3): Specification (specify)
+  - Light Blue (#03a9f4): Specification - optional (clarify)
+  - Orange (#ff9800): Planning (plan)
   - Purple (#9c27b0): Execution (tasks)
+  - Yellow (#ffc107): Quality - optional (analyze)
+  - Red (#f44336): Execution (implement)
 
 **Design Notes**:
 - Boxes: 150px wide, 80px tall
 - Font: 18pt for commands, 14pt for artifacts
 - Use rounded corners on boxes
 - Arrow width: 4px
+- Optional steps (clarify, analyze): Use dashed border (2px) and 80% opacity
+- Optional label: Display "(optional)" in 12pt italic below command name
 
 ---
 
@@ -1030,6 +1036,152 @@ graph TD
 
 ---
 
+### Section 3.5: Advanced Topics (Slides 21A-21E)
+
+#### Slide 21A: Section Title
+
+**Layout**: Large Title + Subtitle + 4 Icons + Visual
+
+**Text**:
+- Title: "Advanced Topics" (48pt)
+- Subtitle: "Fixing, refining, integrating, and optimizing"
+
+**Visual**: 4 icons in row
+- Icons: 🔧 (fixing), 📅 (workflow), 🔄 (integration), ⚡ (optimization)
+- Size: 100px each
+- Placement: Bottom 40% of slide, evenly spaced
+
+**Design Notes**:
+- Minimal text, breather slide
+- White space: 50% of slide
+- Subtle animation on icons if digital presentation
+- Dark background consistent with overall theme
+
+---
+
+#### Slide 21B: Fixing Specs Mid-Development
+
+**Layout**: Title + Q&A Format + 5 Bullets
+
+**Text**:
+- Title: "Q: How to Fix Bugs in Spec/Plan After Tasks Started?"
+
+**Answer** (5 concise bullets):
+1. **Stop & Assess**: Pause work, determine scope of impact
+2. **Version the Spec**: Update `sync_impact` field in frontmatter
+3. **Regenerate Selectively**: Use `/speckit.tasks --regenerate` for affected tasks only
+4. **Mark Changes**: Add [AMENDED] markers to show what changed
+5. **Update Companions**: Sync plan.md and research.md if decisions changed
+
+**Visual**: Warning icon (⚠️) near title
+- Size: 60px
+- Color: Orange (#ff9800)
+- Placement: Top-right corner
+
+**Design Notes**:
+- Use numbered list (01-05 style) for clarity
+- Highlight `/speckit.tasks --regenerate` in monospace font
+- Code terms: Monospace (`sync_impact`, `[AMENDED]`)
+- Keep bullets under 15 words each
+
+---
+
+#### Slide 21C: Daily Workflow & Refinements
+
+**Layout**: Title + Q&A Format + Two Columns
+
+**Text**:
+- Title: "Q: How to Organize Daily Work? Need for Refinements?"
+
+**Answer - Left Column: Daily Cadence**
+1. **Morning**: Review spec.md before coding
+2. **During Work**: Use [NEEDS CLARIFICATION] for questions
+3. **End of Day**: Update task status in tasks.md
+
+**Answer - Right Column: Refinement Sessions**
+1. **Weekly**: Hold 30-min refinement for open questions
+2. **Monthly**: Review constitution.md for updates
+3. **Between Features**: Capture lessons learned
+
+**Visual**: Calendar icon (📅) and checklist icon (✅)
+- Size: 50px each
+- Placement: Above each column
+- Colors: Blue (#2196f3) for calendar, Green (#4caf50) for checklist
+
+**Design Notes**:
+- Two equal columns (50/50 split)
+- Clear visual separation between daily and weekly cadence
+- Use time indicators: "30-min", "Morning", "Weekly"
+- Keep practical and actionable
+
+---
+
+#### Slide 21D: Jira Export Best Practices
+
+**Layout**: Title + Q&A Format + 3 Approaches + Mapping Table
+
+**Text**:
+- Title: "Q: How to Export Spec-Kit Tasks to Jira?"
+
+**Answer: Three Approaches**
+1. **Manual**: Copy tasks → Jira descriptions with acceptance criteria
+2. **CLI**: Use Jira CLI + task IDs as external links
+3. **API**: Script to sync tasks.md → Jira (for large teams)
+
+**Mapping Table** (2 columns, 4 rows):
+
+| Spec-Kit Artifact | Jira Field |
+|-------------------|------------|
+| Phase | Epic |
+| Task | Story |
+| Acceptance Criteria | Sub-tasks or Checklist |
+| Dependencies (K-refs) | Linked Issues |
+
+**Visual**: Integration icon (🔄)
+- Size: 60px
+- Placement: Top-right corner
+- Color: Purple (#9c27b0)
+
+**Design Notes**:
+- Table: 60% of slide width, centered below approaches
+- Monospace font for artifact names
+- Add note: "Link back: Add Jira URLs to tasks.md for traceability"
+- Emphasize bi-directional sync for large teams
+
+---
+
+#### Slide 21E: Token Optimization Strategies
+
+**Layout**: Title + Q&A Format + 5 Tips with Icons
+
+**Text**:
+- Title: "Q: How to Avoid Burning Tokens Quickly?"
+
+**Answer: 5 Optimization Strategies**
+1. ⚡ **Use K-References**: Link to decisions instead of repeating
+2. 📝 **Keep Specs Concise**: Focus on WHAT/WHY, not HOW
+3. 🔄 **Batch Operations**: Regenerate multiple artifacts together
+4. 📋 **Reuse Templates**: Standardize patterns in constitution.md
+5. 💾 **Cache with research.md**: Store complex context once
+
+**Visual**: Lightning bolt icon (⚡) near title
+- Size: 80px
+- Placement: Top-right corner
+- Color: Yellow (#ffc107)
+
+**Cost Context Box** (bottom of slide):
+- "Typical costs: Spec (500 tokens), Plan (800 tokens), Tasks (600 tokens)"
+- "With optimization: 30-50% token reduction"
+
+**Design Notes**:
+- Icons: 40px before each tip
+- Numbered 01-05 (bold, two digits)
+- Highlight token counts in monospace
+- Cost box: Light background (#2a2a2a), bordered
+- Keep practical and quantifiable
+
+---
+
 ### Section 4: Demo & Next Steps (Slides 22-24)
 
 #### Slide 22: Quick Demo (Hybrid)
@@ -1212,7 +1364,7 @@ previous_version: 1.0.1
 
 **File**: `media/presentation-screenshots/04-spec-comparison.png`
 
-**Source**: 
+**Source**:
 - Left: `artifacts/spec-example-taskify.md` (lines 20-50)
 - Right: `artifacts/spec-example-ideavim-api.md` (lines 50-80)
 
@@ -1418,6 +1570,10 @@ previous_version: 1.0.1
 - Slide 17: 20 seconds (breather)
 - Slides 18-21: 70 seconds each
 
+**Section 3.5** (Slides 21A-21E): 5 minutes total
+- Slide 21A: 20 seconds (breather)
+- Slides 21B-21E: 70 seconds each (4 slides)
+
 **Section 4** (Slides 22-24): 3 minutes total
 - Slide 22: 60 seconds (or 90 if live demo)
 - Slide 23: 60 seconds
@@ -1425,15 +1581,17 @@ previous_version: 1.0.1
 
 **Section 5** (Slide 25): 5 minutes (Q&A)
 
-### Total: 30 minutes
+### Total: 35 minutes (5 min added for Advanced Topics)
 
 ### Checkpoint Markers
 
 Add subtle timing indicators in presenter notes:
 - ⏱️ "Must reach by 5:00" (Slide 6)
 - ⏱️ "Must reach by 12:00" (Slide 10)
-- ⏱️ "Must reach by 20:00" (Slide 18)
-- ⏱️ "Start Q&A by 25:00" (Slide 25)
+- ⏱️ "Must reach by 17:00" (Slide 16 - end of artifacts)
+- ⏱️ "Must reach by 22:00" (Slide 21 - end of practical tips)
+- ⏱️ "Must reach by 27:00" (Slide 21E - end of advanced topics)
+- ⏱️ "Start Q&A by 30:00" (Slide 25)
 
 ---
 

@@ -6,6 +6,8 @@ IT specialists (developers, architects, QAs, product managers)
 ## Duration
 45-60 minutes (including Q&A)
 
+**Note:** With the addition of Section 3.5 (Advanced Topics), the presentation now runs 35-40 minutes of content + 5-10 minutes Q&A.
+
 ## Presentation Flow
 
 ### Part 1: Introduction to Spec-Driven Development (10-15 min)
@@ -19,7 +21,7 @@ IT specialists (developers, architects, QAs, product managers)
 - Slide 8: What is Spec-Kit?
 - Slide 9: Core Philosophy & Principles
 - Slide 10: Development Phases (Greenfield, Creative, Brownfield)
-- Slide 11: The 6-Step Workflow Overview
+- Slide 11: The 7-Step Workflow Overview
 
 ### Part 3: Command-by-Command Deep Dive (25-30 min)
 - Slide 12: Setup & Installation
@@ -36,6 +38,16 @@ IT specialists (developers, architects, QAs, product managers)
 - Slide 39: Common Pitfalls & How to Avoid Them
 - Slide 40: Getting Started - Next Steps
 - Slide 41: Q&A
+
+### Part 4.5: Advanced Topics (5-7 min) **[NEW]**
+- Slide 41A: Section Title - Advanced Topics
+- Slide 41B: Fixing Specs Mid-Development
+- Slide 41C: Daily Workflow & Refinements  
+- Slide 41D: Jira Export Best Practices
+- Slide 41E: Token Optimization Strategies
+
+### Part 5: Q&A (5-10 min)
+- Slide 42: Q&A
 
 ## Slide Template Structure
 Each command slide will include:

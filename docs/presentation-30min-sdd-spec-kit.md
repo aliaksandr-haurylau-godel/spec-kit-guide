@@ -191,19 +191,20 @@ specify create spec "Add user authentication"
 #### Slide 6: The Spec-Kit Workflow (Visual)
 
 **Content**:
-- Title: "The 6-Step Spec-Kit Workflow"
-- Visual: Flowchart with 6 boxes + icons:
+- Title: "The 7-Step Spec-Kit Workflow"
+- Visual: Flowchart with 7 boxes + icons:
   1. `/speckit.constitution` → constitution.md
   2. `/speckit.specify` → spec.md
-  3. `/speckit.clarify` → (optional research.md)
+  3. `/speckit.clarify` → research.md (optional)
   4. `/speckit.plan` → plan.md
-  5. `/speckit.analyze` → validation
-  6. `/speckit.tasks` → tasks.md
-- Color coding: Green (setup), Blue (specification), Orange (planning), Purple (execution)
+  5. `/speckit.tasks` → tasks.md
+  6. `/speckit.analyze` → validation (optional)
+  7. `/speckit.implement` → executes tasks
+- Color coding: Green (setup), Blue/Light Blue (specification), Orange (planning), Purple (execution - tasks), Yellow (quality - optional), Red (execution - implement)
 
 **Speaker Notes (Brief)**:
-- "Six steps. But don't worry—we'll focus on the four artifacts that matter most."
-- "Constitution sets the rules once. Then every feature follows: specify → plan → tasks."
+- "Seven steps total. But don't worry—two are optional quality gates, and we'll focus on the core artifacts that matter most."
+- "Constitution sets the rules once. Then every feature follows: specify → plan → tasks → implement. Clarify helps refine unclear specs. Analyze is an optional quality gate between tasks and implementation."
 - "Let's see what these artifacts actually look like in production."
 
 ---
@@ -1067,7 +1068,7 @@ graph TD
 **Speaker Notes (Brief)**:
 - "Let's see this in action. You type `/speckit.specify <idea>` in your AI chat."
 - "The agent generates a spec. You review, clarify, approve."
-- "Then `/speckit.plan`, `/speckit.tasks`. Rinse, repeat."
+- "Then `/speckit.plan`, `/speckit.tasks`, `/speckit.implement`. Rinse, repeat."
 - If live demo: Keep it under 30 seconds. Pre-stage the command. Have a backup screenshot.
 - Show command: `/speckit.specify Build a simple Todo App`
 - Show generated spec.md excerpt (frontmatter + first user story)

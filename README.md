@@ -65,6 +65,8 @@ Common questions and troubleshooting:
 - **[Customization](faq/customization.md)** - Customize constitution, templates, and workflows
 - **[Constitution Evolution](faq/constitution-evolution.md)** - Version management and MAJOR/MINOR/PATCH bumps
 - **[Artifacts FAQ](faq/artifacts.md)** - Questions about specs, plans, tasks, and research.md
+- **[Workflow Best Practices](faq/workflow-best-practices.md)** - Fixing specs mid-development, daily workflows, and refinements
+- **[Integration Patterns](faq/integration-patterns.md)** - Jira/Linear export strategies and token optimization
 
 ### 💡 Tricks & Tips
 
