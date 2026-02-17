@@ -65,24 +65,36 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 2: The Problem (Current State)
 
-**Layout**: Title + 3 Bullets + Visual (right 40% of slide)
+**Layout**: Title + Content Description + Key Problems
 
 **Text**:
 - Title: "The AI Agent Problem"
-- Bullet 1: "Long chat sessions → context loss → drift" (9 words)
-- Bullet 2: "No shared memory → agents repeat questions" (8 words)
-- Bullet 3: "Unclear requirements → expensive rework cycles" (6 words)
 
-**Visual**: Screenshot of long ChatGPT/Claude conversation
-- Dimensions: 800x600px
-- Placement: Right 40% of slide
-- Annotations: Highlight box around confusion message
-- File: `media/presentation-screenshots/01-ai-conversation-chaos.png`
+**Content**: Conversation Timeline showing context degradation
+- Messages 1-10: Clear decisions ("Let's use PostgreSQL with JWT auth")
+- Messages 20-30: Agent asks "What database should we use?" (already decided)
+- Messages 40-50: Agent suggests incompatible approach, contradicts earlier decisions
 
-**Design Notes**:
-- Use red highlight color (#f44336) for confusion markers
-- Left 60%: White space with bullets
-- Font size: 24pt for bullets
+**Key Problems to Highlight**:
+1. **Context Loss**: Agent forgets decisions made 20 messages ago
+2. **Redundant Questions**: Agent re-asks about testing strategy, database choice, API structure
+3. **Implementation Drift**: Final code doesn't match original requirements
+4. **No Shared Memory**: New session = start from zero
+5. **Expensive Rework**: 10+ hours wasted on misaligned implementation
+
+**Real-World Example** (anonymized):
+```
+Message 15: "Let's use REST API with pagination"
+Message 48: Agent suggests GraphQL implementation
+Developer: "Wait, didn't we decide on REST?"
+Agent: "I don't have record of that decision"
+```
+
+**Implementation Options**:
+- Diagram showing conversation flow with annotations
+- Timeline visualization with fade effect for context loss
+- Table format showing message progression
+- Text-based description with numbered list
 
 ---
 
@@ -137,25 +149,64 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 5: Enter GitHub Spec-Kit
 
-**Layout**: Title + Subtitle + 4 Bullets + Visual (bottom)
+**Layout**: Title + Subtitle + Content Sections
 
 **Text**:
 - Title: "GitHub Spec-Kit: SDD Made Real"
 - Subtitle: "Open-source framework from GitHub (2024)"
-- Bullet 1: "CLI + slash commands for Copilot/Claude/Cursor" (8 words)
-- Bullet 2: "Generates structured artifacts (spec, plan, tasks)" (7 words)
-- Bullet 3: "Built-in templates & constitutional principles" (6 words)
-- Bullet 4: "Production use: JetBrains, Skyscanner, internal tools" (7 words)
 
-**Visual**: Terminal screenshot of `specify --help`
-- Dimensions: 1000x400px
-- Placement: Bottom 30% of slide
-- File: `media/presentation-screenshots/02-speckit-cli-help.png`
+**What is Spec-Kit**:
+- Open-source framework operationalizing Spec-Driven Development methodology
+- Provides CLI + slash commands for AI coding assistants
+- Used in production: JetBrains IdeaVim, Skyscanner Backpack, internal CLI tools
 
-**Design Notes**:
-- Bullets: Top 60% of slide
-- Terminal: Syntax-highlighted, monospace font
-- Use GitHub logo/icon near title
+**System Requirements**:
+- Python 3.11+ (required for CLI)
+- Git (for branch management)
+- AI coding assistant: GitHub Copilot, Claude, or Cursor
+- Optional: `uv` tool installer (recommended) or `pip`
+
+**Installation Command**:
+```bash
+# Option 1: Using uv (recommended)
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+
+# Option 2: Using pip
+pip install git+https://github.com/github/spec-kit.git
+
+# Verify installation
+specify --version
+```
+
+**Initial Setup**:
+```bash
+# Initialize in existing project
+cd your-project/
+specify init --here --ai claude
+
+# Or create new project
+mkdir new-project && cd new-project
+specify init --ai copilot
+```
+
+**What Gets Created**:
+- `.specify/` directory (artifact storage)
+- `.specify/templates/` (spec, plan, task templates)
+- Configuration file: `.specify/config.yaml`
+
+**Quick Start**:
+```bash
+# Create first specification
+specify create spec "Add user authentication"
+
+# Or use slash command in AI chat
+/speckit.specify Add user authentication with JWT tokens
+```
+
+**Implementation Notes**:
+- Use code blocks with syntax highlighting for commands
+- Organize in clear sections: What, Requirements, Installation, Setup, Quick Start
+- Consider tabbed or collapsible sections for different installation methods
 
 ---
 
@@ -214,25 +265,124 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 8: Artifact #1 – constitution.md
 
-**Layout**: Title + Purpose + 3 Bullets + Visual (right side)
+**Layout**: Title + Content Sections (No Visual)
 
 **Text**:
 - Title: "constitution.md: Your Project's Immutable Laws"
-- Purpose: "Architectural principles that govern ALL work" (7 words)
-- Bullet 1: "Created once, versioned (like 1.2.2, 2.0.0)" (8 words)
-- Bullet 2: "Contains NON-NEGOTIABLE rules (tests, licenses, patterns)" (7 words)
-- Bullet 3: "Templates reference constitution via `sync_impact`" (6 words)
 
-**Visual**: Screenshot of constitution frontmatter
-- Source: `artifacts/constitution-example-backpack.md` (lines 1-10)
-- Dimensions: 600x400px
-- Placement: Right 40% of slide
-- Annotations: Highlight `version: 1.0.2`
-- File: `media/presentation-screenshots/03-constitution-frontmatter.png`
+**What IS a Constitution** (Brief overview):
+- Project's foundational rules governing ALL development work
+- Created once, then versioned (semver: 1.0.0 → 1.0.1 → 2.0.0)
+- Referenced by all artifacts via `sync_impact` field
+- Enforced through templates, Phase -1 gates, and CI/CD checks
 
-**Design Notes**:
-- Use code block styling for `sync_impact`
-- Highlight version number in green (#4caf50)
+**What to Include - Core Articles** (Article I-V):
+
+Present in structured format:
+
+**Article I: Non-Negotiable Rules**
+- Legal requirements (licenses, copyright headers)
+- Security mandates (dependency scanning, credential handling)
+- Tooling constraints (specific CI/CD, required linters)
+- Example: "Apache 2.0 license headers REQUIRED in all source files"
+
+**Article II: Testing Standards**
+- Unit test coverage thresholds (e.g., "80% minimum")
+- Integration test requirements
+- Test-first vs test-after policies
+- Example: "P1 features MUST have unit tests before PR approval"
+
+**Article III: Code Organization**
+- Directory structure conventions
+- Module/package naming patterns
+- Architectural boundaries
+- Example: "All public APIs in `src/api/`, internals in `src/internal/`"
+
+**Article IV: Documentation Standards**
+- README requirements (badges, setup instructions)
+- API documentation format (JSDoc, docstrings)
+- Changelog maintenance
+- Example: "All public functions MUST have docstrings with param types"
+
+**Article V: Dependency Management**
+- Approved dependency sources
+- Version pinning policies
+- Security update cadence
+- Example: "Lock files MUST be committed; no floating versions in production"
+
+**What NOT to Include** (Clear boundaries):
+- ❌ Implementation details: "Use React hooks" (belongs in plan.md)
+- ❌ Feature-specific requirements: "Login page must have email field" (belongs in spec.md)
+- ❌ Temporary decisions: "Use mock API for now" (belongs in research.md)
+- ❌ Personal preferences: "I prefer tabs over spaces" (team discussion, not constitution)
+
+**Additional Articles (Article X+)** - When to Add:
+
+Explain when projects need additional articles:
+- Project grows from POC → MVP → Production
+- New compliance requirements emerge (SOC2, HIPAA)
+- Team expands and needs process clarity
+
+**Common Additional Articles**:
+
+**Article VI: Security Standards**
+- Secrets MUST NOT be committed
+- All API endpoints MUST validate input
+- Authentication required for non-public routes
+- Regular dependency audits (monthly)
+
+**Article VII: Performance Requirements**
+- Page load time < 3 seconds (desktop)
+- API response time < 200ms (95th percentile)
+- Bundle size < 500KB (initial load)
+- Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1
+
+**Article VIII: Accessibility Standards**
+- WCAG 2.1 AA compliance REQUIRED
+- All interactive elements keyboard navigable
+- Color contrast ratio ≥ 4.5:1 for text
+- Screen reader tested before production
+
+**Article IX: Deployment & Release**
+- Main branch ALWAYS deployable
+- Feature flags for incomplete features
+- Rollback plan documented for all releases
+- Blue-green deployment for production
+
+**Article X: Monitoring & Observability**
+- Error tracking configured
+- Logging standards (structured JSON logs)
+- Metrics dashboards for critical paths
+- On-call runbooks for each service
+
+**Version Semantics**:
+
+**PATCH** (1.0.0 → 1.0.1): Typo fixes, clarifications, no rule changes → Optional regeneration
+**MINOR** (1.0.x → 1.1.0): New articles added, stricter enforcement → Review in-flight work
+**MAJOR** (1.x.x → 2.0.0): Rules removed/changed, POC→Production → MUST regenerate all artifacts
+
+**Examples**:
+
+**Backpack Constitution**:
+```yaml
+version: 1.0.2
+# Article I: NON-NEGOTIABLE - Apache 2.0 License
+# Article II: NON-NEGOTIABLE - Nx Workspace Structure  
+# Article III: Component Testing (Jest, Chromatic, axe-core)
+```
+
+**Manifest Constitution Evolution**:
+```yaml
+# v1.1.0 (POC): [DEFERRED FOR POC] Testing, Performance
+# v2.0.0 (MVP): ✅ Testing REQUIRED, Performance enforced, Security added
+```
+
+**Implementation Notes**:
+- Focus on WHAT to include in each article type
+- Emphasize Article X+ as growth path
+- Use collapsible sections for detailed article descriptions
+- Highlight version semantic implications clearly
+- No visual needed - content is self-explanatory
 
 ---
 
@@ -265,53 +415,273 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 10: Artifact #2 – spec.md
 
-**Layout**: Title + Purpose + 4 Bullets + Split Visual (bottom)
+**Layout**: Title + Content Sections (No Visual - No Comparison)
 
 **Text**:
 - Title: "spec.md: The WHAT and WHY"
-- Purpose: "Defines requirements WITHOUT prescribing implementation" (6 words)
-- Bullet 1: "User Stories with acceptance criteria" (5 words)
-- Bullet 2: "Functional/Non-functional requirements" (3 words)
-- Bullet 3: "Constraints (in scope / out of scope)" (7 words)
-- Bullet 4: "Success metrics" (2 words)
 
-**Visual**: Split screenshot
-- Left: `spec-example-taskify.md` excerpt (simple, 158 lines)
-- Right: `spec-example-ideavim-api.md` excerpt (complex, 249 lines)
-- Dimensions: Each 500x300px
-- Placement: Bottom 40% of slide
-- Labels: "Simple (158 lines)" | "Complex (249 lines)"
-- File: `media/presentation-screenshots/04-spec-comparison.png`
+**Purpose of spec.md**:
+- Captures **WHAT** needs to be built and **WHY** it matters
+- Does **NOT** prescribe **HOW** to implement (that's plan.md's job)
+- Single source of truth for requirements
+- Readable by both humans and AI agents
 
-**Design Notes**:
-- Use vertical divider between screenshots
-- Label font: 16pt, bold
+**Required Elements for Complete Spec** (Detailed requirements for each section):
+
+**1. Frontmatter (Metadata)**
+Present required fields and their purposes:
+```yaml
+feature_name: "User Authentication System"  # Clear, concise (≤60 chars)
+branch_id: "branch-042-auth"               # Branch identifier
+complexity: High                            # Low/Medium/High
+effort: Large (2-3 weeks)                   # Small/Medium/Large + time
+status: approved                            # draft/needs_clarification/approved
+sync_impact: 1.2.2                         # Constitution version alignment
+companion_research: research-042-auth.md    # If complex (optional)
+```
+
+**2. Context & Motivation** (The WHY)
+Must answer:
+- Business problem: What pain point are we solving?
+- User impact: Who benefits and how?
+- Strategic alignment: How does this fit roadmap/goals?
+- Success criteria: What does "done" look like?
+
+Example structure to include:
+```
+## Context
+[Describe current situation and pain points]
+
+## Motivation  
+[Explain why this matters and expected benefits]
+```
+
+**3. User Stories with Acceptance Criteria**
+Requirements:
+- Minimum 3 user stories (unless trivial feature)
+- Prioritize: P0 (critical), P1 (high), P2 (nice-to-have)
+- Acceptance criteria MUST be testable/verifiable
+- Define "out of scope" explicitly (prevents scope creep)
+
+Format:
+```
+### User Story 1 [Priority: P1]
+**As a** [persona]
+**I want** [capability]
+**So that** [business value]
+
+**Acceptance Criteria**:
+- [ ] Given [context], when [action], then [outcome]
+- [ ] Given [context], when [action], then [outcome]
+
+**Out of Scope**:
+- [Explicitly list what's NOT included]
+```
+
+**4. Functional Requirements**
+Structure each requirement with:
+- **Description**: Clear statement of what system must do
+- **Rationale**: Why this is necessary
+- **Dependencies**: Other FRs, K-decisions, or external factors
+
+**5. Non-Functional Requirements (NFRs)**
+Categories to cover:
+- Performance: Response time, throughput, resource usage
+- Scalability: User load, data volume limits
+- Security: Auth, encryption, input validation
+- Reliability: Uptime, error rates, recovery
+- Maintainability: Code quality, documentation
+- Usability: Accessibility, error messages, learnability
+
+**6. Constraints**
+Must define:
+- **In Scope**: What is included
+- **Out of Scope**: What is explicitly NOT included (critical for preventing scope creep)
+- **Technical Constraints**: Platform limitations, compatibility requirements
+
+**7. Success Metrics**
+Requirements:
+- Must be quantifiable (not vague like "improve stability")
+- Include measurement criteria
+- Define timeline for measurement
+
+Example:
+```
+- 10+ plugins migrated to new API within 3 months
+- Zero internal refactoring blocked by external deps
+- API stability: no breaking changes for 6+ months
+- Plugin developer satisfaction: ≥4/5 in survey
+```
+
+**8. Open Questions / Needs Clarification**
+Use [NEEDS CLARIFICATION] markers
+Track dated Q&A sessions with decisions
+
+**Spec Quality Checklist**:
+
+MUST have:
+- ✅ Clear problem statement (WHY)
+- ✅ 3+ prioritized user stories with testable acceptance criteria
+- ✅ Explicit out-of-scope items
+- ✅ Functional requirements with dependencies
+- ✅ Non-functional requirements (performance, security, etc.)
+- ✅ Success metrics (quantifiable)
+- ✅ Constitutional alignment (sync_impact field)
+
+MUST NOT have:
+- ❌ Implementation details ("use React hooks")
+- ❌ Technology choices ("PostgreSQL database")
+- ❌ File structure ("create src/api/auth.ts")
+- ❌ Task breakdowns ("Step 1: Create schema")
+
+**When to Create Companion research.md**:
+- Multiple architectural approaches exist
+- Complex trade-offs need documentation
+- Platform constraints require investigation
+- Decision rationale needs preservation
+
+**Spec Complexity Scale**:
+
+| Aspect | Simple (Taskify) | Complex (IdeaVim API) |
+|--------|------------------|----------------------|
+| Lines | 158 | 249 |
+| User Stories | 5 (straightforward) | 10 (prioritized P0/P1/P2) |
+| Personas | 1 (developer) | 3 (core dev, plugin dev, user) |
+| Acceptance | Simple checklists | Given/When/Then scenarios |
+| NFRs | Minimal (basic perf) | Extensive (compat, docs, perf) |
+| Research | None needed | 418 lines (K1-K6 decisions) |
+| Effort | Small (2-3 days) | Large (4-6 weeks) |
+
+**Implementation Notes**:
+- Present as comprehensive checklist/requirements guide
+- Use expandable sections for detailed requirements
+- Emphasize that structure is consistent but content depth scales
+- No screenshots needed - focus on requirements clarity
 
 ---
 
 #### Slide 11: spec.md in Action (Real Example)
 
-**Layout**: Title + Pull Quote + 3 Bullets + Visual (right)
+**Layout**: Title + Unique Features Analysis (No Visual)
 
 **Text**:
-- Title: "Real Spec: IdeaVim API Layer"
-- Pull Quote: 
-  > "As an IdeaVim core developer, I want all extension functionality exposed through a dedicated API module, so that extensions depend only on this module and internal IdeaVim code can evolve freely."
-- Bullet 1: "Project: JetBrains IdeaVim (10,000+ stars)" (6 words)
-- Bullet 2: "Complexity: High (API design + migration)" (7 words)
-- Bullet 3: "Companion artifact: research.md (418 lines)" (6 words)
+- Title: "Real Spec: IdeaVim API Layer - Unique Features"
 
-**Visual**: Screenshot of User Story 1
-- Source: `spec-example-ideavim-api.md` (lines 52-80)
-- Dimensions: 700x500px
-- Placement: Right 45% of slide
-- Annotations: Highlight user story header
-- File: `media/presentation-screenshots/05-ideavim-user-story.png`
+**Project Context**:
+- Project: JetBrains IdeaVim (10,000+ GitHub stars)
+- Context: Refactoring plugin API to separate internal/external boundaries
+- Spec: `artifacts/spec-example-ideavim-api.md` (249 lines)
 
-**Design Notes**:
-- Pull quote: Italic, slightly larger font (22pt)
-- Quote box: Light border, indented
-- Bullets: Below quote, left-aligned
+**Unique Feature #1: Multi-Stakeholder Personas**
+
+Most specs have 1-2 personas. IdeaVim has **3 distinct personas**:
+- **Persona 1: IdeaVim Core Developer** - Needs freedom to refactor internals
+- **Persona 2: External Plugin Developer** - Needs stable API contract
+- **Persona 3: IdeaVim End User** - Needs working plugin ecosystem
+
+**Lesson**: Complex features often impact multiple stakeholder groups. Spec must acknowledge all perspectives.
+
+**Unique Feature #2: Priority-Driven User Stories**
+
+Stories triaged by impact:
+- **P0 (Critical)**: Core API surface definition - MUST complete first
+- **P1 (High)**: Editor state queries - Dependencies on P0
+- **P2 (Nice-to-have)**: Advanced mode transitions - Can defer to v1.1
+
+**Lesson**: For large features, prioritization prevents scope creep and enables phased delivery.
+
+**Unique Feature #3: Given/When/Then Acceptance Criteria**
+
+Simple specs use checklists. IdeaVim uses **BDD-style scenarios**:
+```
+- [ ] Given editor in NORMAL mode, 
+      when extension calls editorOrNull(), 
+      then returns Editor instance
+      
+- [ ] Given no active editor, 
+      when extension calls editorOrNull(), 
+      then returns null (no exception)
+```
+
+**Lesson**: Given/When/Then forces clarity on edge cases and error handling.
+
+**Unique Feature #4: Companion Research Artifact Reference**
+
+Spec includes: `companion_research: research-example-ideavim-api.md` (418 lines)
+
+Research.md contains 6 K-numbered decisions:
+- K1: State Update Safety (prevents editor corruption)
+- K2: Functional vs Builder Patterns (API design choice)
+- K3: API Surface Scope (what to expose vs hide)
+- K4: Error Handling Strategy
+- K5: Thread Safety Guarantees
+- K6: Versioning Strategy
+
+**Lesson**: Don't bloat spec with design debates. Extract to research.md, reference by K-number.
+
+**Unique Feature #5: Explicit Backward-Compatibility Stance**
+
+Most specs avoid mentioning breaking changes. IdeaVim is **explicit**:
+```
+Breaking Change Accepted: This API refactoring WILL break 
+existing plugins that directly import internal classes.
+
+Mitigation:
+- Migration guide provided
+- 3-month deprecation period
+- Clear error messages pointing to new API
+```
+
+**Lesson**: If breaking changes are necessary, document rationale and mitigation upfront.
+
+**Unique Feature #6: Quantified Success Metrics**
+
+```
+- ≥10 plugins migrated within 3 months
+- Zero internal refactoring blocked by API surface (6 months post-launch)
+- API stability: no breaking changes for ≥6 months
+- Plugin dev satisfaction: ≥4/5 in survey
+```
+
+**Lesson**: Vague goals ("improve stability") vs measurable outcomes ("≥10 plugins migrated").
+
+**Patterns from Skyscanner Backpack Example**:
+
+**Infrastructure-Focused Spec** (not user-facing):
+- effort: Large (2 weeks, 95+ packages to move)
+- complexity: Small (file moves, config updates - tedious but not risky)
+
+**Lesson**: Large effort ≠ high complexity
+- Large effort + small complexity = parallelizable, low risk
+- Small effort + high complexity = needs research.md, careful design
+
+**Validation-Centric Acceptance Criteria** for infrastructure:
+- All 95+ packages moved to libs/ structure
+- CI pipeline passes (green builds)
+- No import path breakage (consumers unaffected)
+- Documentation updated
+- Chromatic visual regression tests pass (no UI changes)
+
+**Lesson**: For infrastructure work, validation IS the primary deliverable.
+
+**Common Patterns Across Production Specs**:
+1. Dated clarification sessions preserved in spec (transparency)
+2. Constitutional references (sync_impact, NON-NEGOTIABLE compliance)
+3. Out-of-scope is explicit (prevents scope creep)
+4. Success metrics are quantified (not "improve", but "≥10 plugins")
+5. Dependencies tracked (K-decisions, other features, external factors)
+
+**Scaling Patterns**:
+- Simple feature (158 lines): 1 persona, 5 stories, basic acceptance
+- Complex feature (249 lines): 3 personas, 10 prioritized stories, Given/When/Then, companion research.md
+
+**Key Takeaway**: Spec.md structure is consistent (frontmatter, context, stories, requirements, constraints), but **content depth scales** with feature complexity.
+
+**Implementation Notes**:
+- Present as detailed feature analysis
+- Use examples from real files: `artifacts/spec-example-ideavim-api.md`, `artifacts/spec-example-backpack-nx.md`
+- No screenshots needed - content explains unique patterns
+- Focus on lessons learned from production examples
 
 ---
 
@@ -346,25 +716,106 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 13: Artifact #3 – plan.md
 
-**Layout**: Title + Purpose + 4 Bullets + Visual (bottom right)
+**Layout**: Title + Phase Description + Mermaid Diagram
 
 **Text**:
 - Title: "plan.md: The HOW"
-- Purpose: "Implementation approach WITHOUT micro-tasks" (5 words)
-- Bullet 1: "Technology stack + rationale" (4 words)
-- Bullet 2: "System architecture (diagrams, data models)" (5 words)
-- Bullet 3: "Phases with gates (Phase -1: constitutional checks)" (8 words)
-- Bullet 4: "Risk & complexity tracking" (4 words)
+- Purpose: "Implementation approach WITHOUT micro-tasks"
 
-**Visual**: Screenshot of Phase structure
-- Source: `plan-example-backpack-nx.md` (search "## Phase")
-- Dimensions: 700x300px
-- Placement: Bottom 40% of slide
-- File: `media/presentation-screenshots/07-plan-phases.png`
+**Phase Structure Description** (Textual explanation):
 
-**Design Notes**:
-- Highlight "Phase -1" in orange (#ff9800)
-- Use gear icon (⚙️) near title
+**Phase -1: Constitutional Pre-Checks** (ALWAYS FIRST)
+- **Purpose**: Verify all NON-NEGOTIABLE requirements met BEFORE implementation
+- **Gates**: License headers, CI checks configured, documentation templates, security scan baseline
+- **Output**: Go/No-Go decision to proceed
+- **Rationale**: Catches constitutional violations early (before code written)
+- **Failure Mode**: If ANY item fails, STOP. Fix before Phase 1.
+
+Example checklist:
+```
+- [ ] Apache 2.0 headers in all .ts/.tsx files
+- [ ] Unit test structure exists (test/ directory)
+- [ ] ESLint config includes required rules
+- [ ] README template populated
+- [ ] CODEOWNERS file updated for new module
+```
+
+**Phase 1: Implementation Core**
+- **Purpose**: Build primary functionality
+- **Activities**: Implement core features (P0/P1 user stories), write unit tests, create API contracts
+- **Dependencies**: K-decisions from research.md (e.g., "Phase 1 implements K1, K2")
+- **Gates**: All P0 acceptance criteria met, unit test coverage ≥80%, no critical security issues
+
+Example:
+```
+## Phase 1: API Finalization
+Goal: Implement `ideavim-api` module with core editor operations
+Tasks: Implement editorOrNull() (K2 pattern), mode query methods (K1 safety)
+Success: All P0 stories implemented, 95%+ test coverage, KDoc on all APIs
+```
+
+**Phase 2: Integration & Validation**
+- **Purpose**: Connect pieces, test end-to-end
+- **Activities**: Integration tests, performance validation, migration guide creation, documentation finalization
+- **Gates**: E2E tests pass, performance NFRs met, documentation reviewed
+- **Failure Mode**: If validation fails, return to Phase 1 for fixes
+
+**Phase 3: Release & Monitoring** (Optional)
+- **Purpose**: Deploy, monitor, iterate
+- **Activities**: Production deployment, monitoring setup, feedback collection
+- **Gates**: Deployment successful, no critical bugs in first week, success metrics trending positive
+
+**Phase Flow Diagram** (Mermaid + Textual Explanation):
+
+**Diagram**:
+```mermaid
+graph TD
+    A[Phase -1: Constitutional Pre-Checks] -->|All gates passed| B[Phase 1: Implementation]
+    A -->|Gate failed| A1[Stop: Fix violations]
+    B -->|P0/P1 complete| C[Phase 2: Integration]
+    B -->|Blocked by research| D[Create research.md]
+    D -->|K-decisions documented| B
+    C -->|E2E tests pass| E[Phase 3: Release]
+    C -->|Validation failed| B
+    
+    style A fill:#ff9800,stroke:#e65100,stroke-width:3px
+    style B fill:#2196f3,stroke:#0d47a1,stroke-width:2px
+    style C fill:#4caf50,stroke:#1b5e20,stroke-width:2px
+    style E fill:#9c27b0,stroke:#4a148c,stroke-width:2px
+    style A1 fill:#f44336,stroke:#b71c1c,stroke-width:2px
+    style D fill:#ff9800,stroke:#e65100,stroke-width:2px
+```
+
+**Diagram Explanation** (describe what colors/shapes mean):
+- **Orange boxes** (Phase -1, research.md creation): Quality gates / checkpoints - must resolve before continuing
+- **Blue box** (Phase 1): Primary development work - implementation of core functionality
+- **Green box** (Phase 2): Validation / integration - testing and documentation
+- **Purple box** (Phase 3): Deployment / release - production rollout
+- **Red box** (Stop): Failure path - constitutional violations must be fixed immediately
+- **Solid arrows**: Normal process flow - expected path through phases
+- **Dashed arrows** (if using): Exception paths - research needed or validation failures requiring backtrack
+
+**Flow Explanation**:
+1. Start with Phase -1 (constitutional checks)
+2. If gates fail → Stop and fix violations (red path)
+3. If gates pass → Proceed to Phase 1 (implementation)
+4. If research needed during Phase 1 → Create research.md with K-decisions, then resume
+5. Phase 1 complete → Move to Phase 2 (integration)
+6. If validation fails in Phase 2 → Return to Phase 1 for fixes
+7. If validation passes → Proceed to Phase 3 (release)
+
+**Standard Plan Structure** (what every plan.md should contain):
+- Technology stack + rationale (React + PostgreSQL because...)
+- System architecture (diagrams, data models, API contracts)
+- Phases with gates (Phase -1: constitutional checks)
+- Risk & complexity tracking (K-decision references)
+
+**Implementation Notes**:
+- Mermaid diagram can be rendered in most documentation systems
+- Provide both diagram AND textual description (accessibility + clarity)
+- Emphasize Phase -1 as critical safety mechanism
+- Show how research.md integrates into flow (not separate, but part of process)
+- Highlight failure paths and recovery (not just happy path)
 
 ---
 
@@ -583,27 +1034,31 @@ style_guide: SLIDES_PROMPT.md
 
 #### Slide 22: Quick Demo (Hybrid)
 
-**Layout**: Title + Side-by-Side Screenshots
+**Layout**: Title + Decorative Visual
 
 **Text**:
-- Title: "Demo: /speckit.specify in Action"
-- Label left: "Command Input"
-- Label right: "Generated Output"
+- Title: "Demo"
 
-**Visual**: Two screenshots
-- Left: Terminal with command `/speckit.specify Build a simple Todo App`
-- Right: Generated spec.md excerpt (frontmatter + overview)
-- Dimensions: Each 600x450px
-- Placement: Left/right split, 50/50
-- Files:
-  - `media/presentation-screenshots/09-demo-input.png`
-  - `media/presentation-screenshots/10-demo-output.png`
+**Visual**: Decorative graphic suggestions:
+- Terminal window icon with command prompt aesthetic
+- Workflow visualization (simple flowchart: idea → spec → plan → tasks)
+- Command-line aesthetic with stylized `/speckit.specify` command
+- Minimalist "live demo" indicator
 
-**Design Notes**:
-- Use vertical divider between screenshots
-- Add arrow from left to right (process flow)
-- Labels: 18pt, above each screenshot
-- Optional: If doing live demo, use this as backup slide
+**Content**: Minimal - let the demo speak
+
+**Demo Flow** (for presenter, not on slide):
+1. Show command: `/speckit.specify Build a simple Todo App`
+2. Show generated spec.md excerpt (frontmatter + first user story)
+3. Timing: 30-60 seconds maximum
+4. Have backup: static example ready if live demo fails
+
+**Implementation Notes**:
+- Keep slide extremely minimal - just title and decorative element
+- Decorative visual should be simple, not distracting
+- Consider: Command prompt symbol, workflow arrows, or abstract geometric pattern
+- No detailed content on slide - demo is the content
+- Presenter should have backup plan if live demo fails
 
 ---
 

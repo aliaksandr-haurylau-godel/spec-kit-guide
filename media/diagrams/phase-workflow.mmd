@@ -1,0 +1,28 @@
+%% Phase Workflow Diagram for plan.md (Slide 13)
+%% This diagram illustrates the flow through implementation phases
+%% from constitutional pre-checks through release
+
+graph TD
+    A[Phase -1: Constitutional Pre-Checks] -->|All gates passed| B[Phase 1: Implementation]
+    A -->|Gate failed| A1[Stop: Fix violations]
+    B -->|P0/P1 complete| C[Phase 2: Integration]
+    B -->|Blocked by research| D[Create research.md]
+    D -->|K-decisions documented| B
+    C -->|E2E tests pass| E[Phase 3: Release]
+    C -->|Validation failed| B
+    
+    style A fill:#ff9800,stroke:#e65100,stroke-width:3px,color:#000
+    style B fill:#2196f3,stroke:#0d47a1,stroke-width:2px,color:#fff
+    style C fill:#4caf50,stroke:#1b5e20,stroke-width:2px,color:#fff
+    style E fill:#9c27b0,stroke:#4a148c,stroke-width:2px,color:#fff
+    style A1 fill:#f44336,stroke:#b71c1c,stroke-width:2px,color:#fff
+    style D fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#000
+
+%% Legend (can be uncommented if needed)
+%% subgraph Legend
+%%     L1[Orange: Quality Gates/Checkpoints]
+%%     L2[Blue: Primary Development]
+%%     L3[Green: Validation/Integration]
+%%     L4[Purple: Deployment/Release]
+%%     L5[Red: Failure/Stop]
+%% end

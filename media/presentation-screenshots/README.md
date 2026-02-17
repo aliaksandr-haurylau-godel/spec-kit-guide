@@ -1,63 +1,137 @@
-# Presentation Screenshots
+# Presentation Visual Content
 
-This directory contains screenshots for the 30-minute SDD presentation deck.
+**Status**: Screenshots replaced with rich textual content and diagrams
 
-## Required Screenshots
+## Overview
 
-Create these 11 screenshots following the specifications in `slides/30min-sdd-deck-structure.md`:
+The presentation slides have been redesigned to focus on **detailed content specifications** rather than static screenshots. This approach provides:
 
-1. **01-ai-conversation-chaos.png** (800x600px) - Long ChatGPT/Claude conversation showing context loss
-2. **02-speckit-cli-help.png** (1000x400px) - Terminal output of `specify --help`
-3. **03-constitution-frontmatter.png** (600x400px) - Constitution version frontmatter from Backpack example
-4. **04-spec-comparison.png** (1000x300px) - Side-by-side: Taskify vs IdeaVim specs
-5. **05-ideavim-user-story.png** (700x500px) - IdeaVim User Story 1 with acceptance criteria
-6. **06-research-k-decision.png** (600x400px) - research.md K1 structure (Problem/Decision/Rationale)
-7. **07-plan-phases.png** (700x300px) - Plan phase structure with Phase -1 gates
-8. **08-task-example.png** (700x500px) - Task 1.1 with dependencies and acceptance criteria
-9. **09-demo-input.png** (600x450px) - Terminal with `/speckit.specify` command
-10. **10-demo-output.png** (600x450px) - Generated spec.md excerpt
-11. **11-artifact-flowchart.png** (800x600px) - Flowchart showing artifact relationships (optional, create in slides)
+- **More useful information**: Comprehensive details about what to include in each artifact
+- **Easier maintenance**: Content updates don't require recreating images
+- **Better accessibility**: Text-based content is searchable and screen-reader friendly
+- **Flexible implementation**: Content can be adapted to any presentation format
 
-## Screenshot Sources
+## Content Approach by Slide
 
-- **Artifacts**: Use files in `../../artifacts/` directory
-- **Terminal**: Run commands in test environment
-- **Conversations**: Create or capture from ChatGPT/Claude (blur sensitive content)
+### Slides Using Detailed Textual Content (No Screenshots)
 
-## Tools Recommended
+**Slide 2: AI Agent Problem**
+- **Content**: Conversation timeline description with context degradation examples
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 61-91)
+- **Implementation**: Can be presented as diagram, timeline, table, or text
 
-- **macOS**: Cmd+Shift+4 (native screenshot)
-- **Windows**: Snipping Tool or Snip & Sketch
-- **Linux**: Flameshot or GNOME Screenshot
-- **Code**: VS Code with syntax highlighting enabled
+**Slide 5: Enter Spec-Kit**
+- **Content**: Installation commands, system requirements, quick start guide
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 115-173)
+- **Implementation**: Code blocks with syntax highlighting
 
-## Annotation Tools
+**Slide 8: constitution.md**
+- **Content**: Detailed article structure (I-V, X+), version semantics, examples
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 170-305)
+- **Implementation**: Structured sections with examples from real artifacts
 
-- **Skitch** (macOS/Windows) - Simple annotations, arrows, boxes
-- **Snagit** (paid, powerful) - Professional annotations
-- **Photopea** (web-based) - Free Photoshop alternative
-- **GIMP** (free, open-source) - Advanced editing
+**Slide 10: spec.md**
+- **Content**: Complete requirements for each spec section, quality checklist
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 310-485)
+- **Implementation**: Comprehensive requirements guide with examples
 
-## Guidelines
+**Slide 11: spec.md Examples**
+- **Content**: 6 unique features from IdeaVim + Backpack patterns
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 487-640)
+- **Implementation**: Detailed feature analysis with lessons learned
 
-- **Blur sensitive content**: Company names, API keys, internal URLs
-- **Use high contrast**: Dark theme for code, light highlights for annotations
-- **Maintain aspect ratios**: Specified dimensions are target sizes
-- **Export as PNG**: Better quality than JPEG for screenshots with text
-- **Name files exactly**: Use the filenames specified above
+**Slide 22: Demo**
+- **Content**: Minimal - just title with decorative graphic
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 456-467)
+- **Implementation**: Simple visual, focus on live demo
 
-## Status
+### Slides Using Diagrams + Textual Descriptions
 
-- [ ] 01-ai-conversation-chaos.png
-- [ ] 02-speckit-cli-help.png
-- [ ] 03-constitution-frontmatter.png
-- [ ] 04-spec-comparison.png
-- [ ] 05-ideavim-user-story.png
-- [ ] 06-research-k-decision.png
-- [ ] 07-plan-phases.png
-- [ ] 08-task-example.png
-- [ ] 09-demo-input.png
-- [ ] 10-demo-output.png
-- [ ] 11-artifact-flowchart.png (optional)
+**Slide 13: plan.md (Phase Workflow)**
+- **Content**: Phase descriptions + Mermaid flowchart + diagram explanation
+- **Location**: 
+  - Content: `docs/presentation-30min-sdd-spec-kit.md` (lines 287-400)
+  - Diagram: `media/diagrams/phase-workflow.mmd`
+- **Implementation**: Render Mermaid diagram alongside textual phase descriptions
 
-Check off each screenshot as you create it.
+**Slide 16: Artifact Relationships**
+- **Content**: Traceability flowchart (constitution → spec → research → plan → tasks)
+- **Location**: `docs/presentation-30min-sdd-spec-kit.md` (lines 332-360)
+- **Original diagram**: Already specified in presentation document
+- **Implementation**: Mermaid diagram can be rendered in presentation tools
+
+### Slides Unchanged (Keep Original Approach)
+
+**Slide 12: research.md**
+- Uses excerpt from `artifacts/research-example-ideavim-api.md`
+- Shows K-decision structure
+
+**Slide 15: tasks.md**
+- Uses excerpt from `artifacts/tasks-example-ideavim-api.md`
+- Shows task structure with dependencies
+
+## Directory Structure
+
+```
+media/
+├── diagrams/                    # NEW: Mermaid diagrams
+│   └── phase-workflow.mmd       # Phase flow for Slide 13
+└── presentation-screenshots/    # DEPRECATED: No longer creating screenshots
+    └── README.md               # This file
+
+artifacts/                       # Reference files for content
+├── constitution-example-backpack.md
+├── spec-example-ideavim-api.md
+├── spec-example-backpack-nx.md
+├── research-example-ideavim-api.md
+├── plan-example-backpack-nx.md
+└── tasks-example-ideavim-api.md
+```
+
+## Benefits of New Approach
+
+### Advantages
+- ✅ **Always fresh**: References real artifact files that are version-controlled
+- ✅ **More detailed**: Can include comprehensive information not visible in screenshots
+- ✅ **Easier updates**: Change markdown files, not regenerate images
+- ✅ **Better UX**: Audience can copy/paste code examples
+- ✅ **Accessible**: Screen readers can parse content
+- ✅ **Smaller size**: Markdown files vs PNG images
+- ✅ **Format agnostic**: Content works in slides, docs, web, PDF
+
+### What Changed
+- ❌ **No more screenshots**: Slides 2, 3, 5, 8, 10, 11, 22 use text/code/examples instead
+- ➕ **Added diagrams**: Slide 13 (phase workflow), Slide 16 (artifact relationships)
+- ✅ **Kept excerpts**: Slides 12, 15 reference actual artifact files
+
+## Creating Presentations
+
+When building presentation from these specifications:
+
+1. **Read content from**: `docs/presentation-30min-sdd-spec-kit.md`
+2. **Follow structure from**: `slides/30min-sdd-deck-structure.md`
+3. **Reference artifacts in**: `artifacts/` directory
+4. **Render diagrams from**: `media/diagrams/*.mmd` (Mermaid format)
+
+### Presentation Format Options
+
+**Slides (PowerPoint, Keynote, Google Slides)**:
+- Use formatted code blocks for commands/examples
+- Create diagrams from Mermaid source or hand-draw
+- Break detailed content into progressive reveal/sections
+
+**Documentation (Markdown, HTML)**:
+- Content already in markdown format
+- Diagrams render automatically (if Mermaid supported)
+- Can include expandable sections for details
+
+**Web Presentation (Reveal.js, Spectacle)**:
+- Markdown content works directly
+- Mermaid diagrams render natively
+- Interactive features possible (tabs, accordions)
+
+## See Also
+
+- [Main Presentation Plan](../../docs/presentation-30min-sdd-spec-kit.md) - Full content specifications
+- [Slide Structure Guide](../../slides/30min-sdd-deck-structure.md) - Detailed layout guidance
+- [Artifact Examples](../../artifacts/README.md) - Source material for examples
